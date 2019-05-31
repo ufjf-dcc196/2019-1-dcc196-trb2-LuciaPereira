@@ -21,7 +21,10 @@ public class TarefaDbHelper extends SQLiteOpenHelper {
 
         @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            //SQLiteDatabase.execSQL(TarefaContract.Tarefa.DROP_TABLE);
+
+            db.execSQL(TarefaContract.Tarefa.DROP_TABLE);
+            onCreate(db);
+
 
 
     }
