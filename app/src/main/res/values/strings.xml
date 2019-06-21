@@ -6,4 +6,10 @@
     <string name="organizador">Organizador de Tarefas:</string>
     <string name="titulo" >Titulo:</string>
     <string name="descricao">Descricao</string>
+    <string name="cadastarTarefa">Cadastrar</string>
+    <string name="cadGrau" />
+    <string name="cadGrauD">Grau:</string>
+    <string name="cadDescricao">Descricao:</string>
+    <string name="cadEstado">Estado:</string>
+    <string name="cadData">Data Limite:</string>
 </resources>
