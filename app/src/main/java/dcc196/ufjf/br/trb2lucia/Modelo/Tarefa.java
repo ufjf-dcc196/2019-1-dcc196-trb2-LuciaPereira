@@ -1,4 +1,4 @@
-package dcc196.ufjf.br.trb2lucia;
+package dcc196.ufjf.br.trb2lucia.Modelo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

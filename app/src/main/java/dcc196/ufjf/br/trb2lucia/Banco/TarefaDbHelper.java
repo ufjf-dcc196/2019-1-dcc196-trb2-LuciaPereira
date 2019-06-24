@@ -1,12 +1,14 @@
-package dcc196.ufjf.br.trb2lucia;
+package dcc196.ufjf.br.trb2lucia.Banco;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import dcc196.ufjf.br.trb2lucia.Banco.TarefaContract;
+
 public class TarefaDbHelper extends SQLiteOpenHelper {
-    private static  final  String NOME_BANCO = "tarefa.db";
-    private static final int VERSAO_SCHEMA = 1;
+    private static  final  String NOME_BANCO = "organizador.db";
+    private static final int VERSAO_SCHEMA = 2;
 
     public TarefaDbHelper(Context context)
     {
@@ -15,14 +17,14 @@ public class TarefaDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE tarefa (_id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + " titulo TEXT, descricao TEXT, grau TEXT, estado TEXT, datainicio TEXT, datafim TEXT);");
+        db.execSQL(TarefaContract.Tarefa.CREATE_TAREFA);
+        db.execSQL(TarefaContract.Etiqueta.CREATE_ETIQUETA);
     }
 
         @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-            db.execSQL(TarefaContract.Tarefa.DROP_TABLE);
+            db.execSQL(TarefaContract.Tarefa.DROP_TAREFA);
             onCreate(db);
 
 

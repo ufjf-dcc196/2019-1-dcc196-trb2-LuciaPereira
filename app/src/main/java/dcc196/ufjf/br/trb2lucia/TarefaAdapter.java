@@ -8,17 +8,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import dcc196.ufjf.br.trb2lucia.Banco.TarefaContract;
 
 public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder>{
 
 
 
     private Cursor cursor;
+
+   private TarefaAdapter.OnTarefaClickListener listener;
     public TarefaAdapter(Cursor c){
         cursor = c;
     }
+
+    public TarefaAdapter(){}
 
     public void setCursor(Cursor c) {
         cursor = c;
@@ -62,7 +67,11 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
         return cursor.getCount();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public interface OnTarefaClickListener {
+        public void onTarefaClick(View v, int position);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtTitulo;
         public TextView txtDescricao;
         public TextView txtGrau;
@@ -73,9 +82,32 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
           txtTitulo = itemView.findViewById(R.id.txt_tarefa_titulo);
           txtDescricao = itemView.findViewById(R.id.txt_tarefa_descricao);
           txtGrau = itemView.findViewById(R.id.txt_tarefa_grau);
+          itemView.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  int position = getAdapterPosition();
+                  if(listener!=null){
+                      listener.onTarefaClick(v, position);
 
+              }
+
+              }
+          });
+
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            if(position!=RecyclerView.NO_POSITION){
+                listener.onTarefaClick(v,position);
+            }
 
         }
     }
 
+
 }
+
+
