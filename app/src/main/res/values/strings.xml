@@ -12,4 +12,7 @@
     <string name="cadDescricao">Descricao:</string>
     <string name="cadEstado">Estado:</string>
     <string name="cadData">Data Limite:</string>
+    <string name="textview">Lista de Tarefas</string>
+    <string name="desEtiqueta">Informe a tag:</string>
+    <string name="btcadEti">Cadastrar</string>
 </resources>

@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.EtiquetaActivity"></activity>
+        <activity android:name=".Activity.ListaTags"></activity>
+        <activity android:name=".Activity.ListTagsTarefas" />
+        <activity android:name=".Activity.ListaTarefa" />
+        <activity android:name=".Activity.NovaTarefa2" />
+        <activity android:name=".Activity.EtiquetaActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

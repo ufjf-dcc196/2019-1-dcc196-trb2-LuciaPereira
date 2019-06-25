@@ -10,23 +10,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import dcc196.ufjf.br.trb2lucia.Banco.TarefaContract;
+import dcc196.ufjf.br.trb2lucia.Modelo.Tarefa;
 
 public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder>{
 
-
-
     private Cursor cursor;
+    private ArrayList<Tarefa> tarefas = new ArrayList<>();
 
    private TarefaAdapter.OnTarefaClickListener listener;
     public TarefaAdapter(Cursor c){
         cursor = c;
     }
 
-    public TarefaAdapter(){}
+    public TarefaAdapter(ArrayList<Tarefa> tarefa){
+        this.tarefas= tarefa;
+    }
 
-    public void setCursor(Cursor c) {
-        cursor = c;
+    //public void setCursor(Cursor c) {
+  //      cursor = c;
+   //     notifyDataSetChanged();
+   // }
+    public void setTarefas(ArrayList<Tarefa> t){
+        tarefas = t;
         notifyDataSetChanged();
     }
 
@@ -44,7 +52,7 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+//verificar
         int idxTitulo = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_TITULO);
         int idxDescricao = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_DESCRICAO);
         int idxGrau = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_GRAU);
@@ -64,11 +72,13 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return cursor.getCount();
+        return tarefas.size();
+                //cursor.getCount();
     }
 
     public interface OnTarefaClickListener {
         public void onTarefaClick(View v, int position);
+        void onLongParticipanteClick(View v, int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

@@ -1,6 +1,7 @@
 package dcc196.ufjf.br.trb2lucia.Persistencia;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -26,6 +27,10 @@ public class EtiquetaDao {
     public void addEtiqueta(Etiqueta e){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues valores = new ContentValues();
+
+    }
+    public void inicializarDBHelper(Context c){
+        dbHelper = new TarefaDbHelper(c);
 
     }
 }

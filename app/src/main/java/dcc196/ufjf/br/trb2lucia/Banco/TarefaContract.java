@@ -27,26 +27,13 @@ public final class TarefaContract {
         public static final String TABLE_NAME = "ETIQUETA";
         public static final String COLUMN_NAME_TAG = "TAG";
 
-        public final static String CREATE_ETIQUETA = "CREATE TABLE " + Etiqueta.TABLE_NAME + "(" + Etiqueta._ID + "INTEGER PRIMARY KEY AUTOINCRMENT," + Etiqueta.COLUMN_NAME_TAG +")";
+
+
+        public final static String CREATE_ETIQUETA = "CREATE TABLE "+Etiqueta.TABLE_NAME+" ("
+                + Etiqueta._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Etiqueta.COLUMN_NAME_TAG+ " TEXT "
+                +")";
+
+
     }
-
-   /* private static ContentValues createContentValue(String titulo, String descricao, String grau, String estado, String datalimite) {
-        ContentValues c = new ContentValues();
-        c.put(Tarefa.COLLUMN_TITULO,titulo);
-        c.put(Tarefa.COLLUMN_DESCRICAO,descricao);
-        c.put(Tarefa.COLLUMN_GRAU,grau);
-        c.put(Tarefa.COLLUMN_ESTADO,estado);
-        c.put(Tarefa.COLLUMN_DATAINCIO,datalimite);
-        return c;
-    }
-    public static void Salvetarefa(SQLiteDatabase db, String titulo, String descricao, String grau, String estado, String data) {
-        db.insert(Tarefa.TABLE_NAME,null, createContentValue(titulo,descricao, grau, estado, data));
-    }*/
-
-
-
-
-
-
-
 }

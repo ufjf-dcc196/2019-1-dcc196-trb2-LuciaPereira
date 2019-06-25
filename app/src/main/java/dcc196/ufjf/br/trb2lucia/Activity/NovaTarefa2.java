@@ -4,8 +4,11 @@ package dcc196.ufjf.br.trb2lucia.Activity;
 
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,18 +44,26 @@ import dcc196.ufjf.br.trb2lucia.R;
                         if (validateEntry()) {
                             if(id != -1)
                             {
-                         /*  TarefaContract.updateTarefa(new TarefaDbHelper(NovaTarefa.this).getWritableDatabase(),id,edtTitulo.getText().toString(),edtDescricao.getText().toString(),edtGrau.getText().toString(),edtEstado.getText().toString(),edtData.getText().toString());
-                           Intent i = new Intent();
-                           i.putExtra("Titulo", edtTitulo.getText().toString());
-                           i.putExtra("Descricao",edtDescricao.getText().toString());
-                           i.putExtra("Grau", edtGrau.getText().toString());
-                           i.putExtra("estado",edtEstado.getText().toString());
-                           i.putExtra("data", edtData.getText().toString());
-                           setResult(Activity.RESULT_OK,i);*/
+                                Intent i = new Intent();
+                                i.putExtra(MainActivity.TITULO_TAREFA, edtTitulo.getText().toString());
+                                i.putExtra(MainActivity.DESCRICAO_TAREFA, edtDescricao.getText().toString());
+                                i.putExtra(MainActivity.GRAU_TAREFA,edtGrau.getText().toString());
+                                i.putExtra(MainActivity.ESTADO_TAREFA,edtEstado.getText().toString());
+                                i.putExtra(MainActivity.HORA_LIMITE_TAREFA,edtData.getText().toString());
+                                if ("".equals(edtTitulo.getText().toString()) || edtTitulo.getText() == null
+                                || edtDescricao.getText().toString().equals("") || edtDescricao.getText() == null
+                                        || edtGrau.getText().toString().equals("") || edtGrau.getText() == null
+                                        || edtEstado.getText().toString().equals("") || edtEstado.getText() == null
+                                        || edtData.getText().toString().equals("") || edtData.getText() == null){
+                                    Toast t = Toast.makeText(getApplicationContext(), "Favor preencher todos os campos", Toast.LENGTH_LONG);
+                                    t.setGravity(Gravity.CENTER,0,0);
+                                    t.show();
+                                }
+
 
                             }else {
-                                //TarefaContract.Salvetarefa(new TarefaDbHelper(NovaTarefa.this).getWritableDatabase(),edtTitulo.getText().toString(),edtDescricao.getText().toString(),edtGrau.getText().toString(),edtEstado.getText().toString(),edtData.getText().toString());
-                                // setResult(Activity.RESULT_OK);
+                                setResult(Activity.RESULT_OK);
+                                finish();
                             }
 
                             Toast.makeText(NovaTarefa2.this,"Tarefa salva com sucesso", Toast.LENGTH_SHORT).show();
