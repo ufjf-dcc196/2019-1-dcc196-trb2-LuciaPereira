@@ -17,7 +17,7 @@ import dcc196.ufjf.br.trb2lucia.R;
 public class EtiquetaActivity extends AppCompatActivity {
     private EditText edtDescricao;
     private int id;
-    Button btnCadastrarTags;
+   // Button btnCadastrarTags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,28 +25,49 @@ public class EtiquetaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_etiqueta);
         EtiquetaDao.getInstance().inicializarDBHelper(getApplication());
         edtDescricao = findViewById(R.id.editDescricao);
-        btnCadastrarTags = findViewById(R.id.btnCadastrar);
+        Button btnCadastrarTags = findViewById(R.id.btnCadastrar);
 
         btnCadastrarTags.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                try {
+                    if (validateEntry()) {
+                        if(id != -1)
+                        {
                             Intent i = new Intent();
                             i.putExtra(MainActivity.DESCRICAO_TAGS,edtDescricao.getText().toString());
 
-                            if ("".equals( edtDescricao.getText().toString().equals("") || edtDescricao.getText() == null)){
+                            if ("".equals( edtDescricao.getText().toString()) || edtDescricao.getText() == null) {
 
                                 Toast t = Toast.makeText(getApplicationContext(), "Favor preencher todos o campo", Toast.LENGTH_LONG);
-                                t.setGravity(Gravity.CENTER,0,0);
+                                t.setGravity(Gravity.CENTER, 0, 0);
                                 t.show();
                             }
-                            else {
 
-                                    setResult(Activity.RESULT_OK, i);
-                                    finish();
-                            }
+                        }else {
+                                setResult(Activity.RESULT_OK);
+                                finish();
+                        }
+                        Toast.makeText(EtiquetaActivity.this,"Etiqueta salva com sucesso", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                        else
+                    Toast.makeText(EtiquetaActivity.this,"Por favor preencha todos os campos", Toast.LENGTH_LONG).show();
+
+
+
+            }catch (Exception err){
+                Toast.makeText(EtiquetaActivity.this,"Ocorreu um erro ao salvar", Toast.LENGTH_LONG).show();
             }
-        });
 
-    }
+        }
+    });
+}
+
+        private boolean validateEntry()
+        {
+            return !(edtDescricao.getText().toString().isEmpty());
+        }
+
+
 }

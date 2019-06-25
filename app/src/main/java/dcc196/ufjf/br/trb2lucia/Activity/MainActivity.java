@@ -40,17 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         //dphelper = new TarefaDbHelper(getApplicationContext());
-        TarefaDao.getInstance().inicializarDBHelper(getApplicationContext());
 
+        TarefaDao.getInstance().inicializarDBHelper(getApplicationContext());
         listaTarefas = findViewById(R.id.rclTarefas);
         listaTarefas.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TarefaAdapter(TarefaDao.getInstance().getTarefa());
-
         listaTarefas.setAdapter(adapter);
 
-       // final Random rnd = new Random();
         btnInserir = findViewById(R.id.btnNovo);
-        //corrigir botao
         btnInserir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,5 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }

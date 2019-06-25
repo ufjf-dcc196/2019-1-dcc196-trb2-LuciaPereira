@@ -76,6 +76,12 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
                 //cursor.getCount();
     }
 
+    public void setOnTarefaClickListener(OnTarefaClickListener listener) {
+        this.listener = listener;
+    }
+
+
+
     public interface OnTarefaClickListener {
         public void onTarefaClick(View v, int position);
         void onLongParticipanteClick(View v, int position);

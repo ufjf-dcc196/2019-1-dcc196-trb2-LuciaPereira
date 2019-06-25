@@ -23,9 +23,7 @@ public class TarefaDao {
     public static TarefaDao getInstance(){
         return instance;
     }
-    /*public ArrayList<Tarefa> getTarefa(){
-        return tarefas;
-    }*/
+
     public  void  addTarefas(Tarefa t){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues valores = new ContentValues();
@@ -79,4 +77,36 @@ public class TarefaDao {
         }
         return tarefas;
     }
+    public void InsertBanco(){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put(TarefaContract.Tarefa.COLLUMN_TITULO, "Natacao");
+        valores.put(TarefaContract.Tarefa.COLLUMN_DESCRICAO,"levar as criancas");
+        valores.put(TarefaContract.Tarefa.COLLUMN_GRAU, "1");
+        valores.put(TarefaContract.Tarefa.COLLUMN_ESTADO, "Em execucao");
+        valores.put(TarefaContract.Tarefa.COLLUMN_DATAINCIO, "terça");
+        db.insert(TarefaContract.Tarefa.TABLE_NAME,null,valores);
+
+    }
+    public void RemoveTarefa(Tarefa t)
+    {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete("Tarefa","_ID=" , new String[]{String.valueOf(t.getIdTarefa())});
+    }
+    public void atulizarTarefa(Tarefa t)
+    {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("Tarefa:", t.getTitulo());
+        cv.put("Descricao", t.getDescricao());
+        cv.put("Grau",t.getGrau());
+        //cv.put("Estado",t.getEstado());
+        cv.put("Data", t.getDatalimite());
+        db.update("Tarefa",cv,
+                "_ID=?",new String[]{String.valueOf(t.getIdTarefa())});
+
+    }
+
+
+
 }
