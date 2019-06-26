@@ -20,20 +20,12 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
     private Cursor cursor;
     private ArrayList<Tarefa> tarefas = new ArrayList<>();
-
-   private TarefaAdapter.OnTarefaClickListener listener;
-    public TarefaAdapter(Cursor c){
-        cursor = c;
-    }
+    private TarefaAdapter.OnTarefaClickListener listener;
 
     public TarefaAdapter(ArrayList<Tarefa> tarefa){
         this.tarefas= tarefa;
     }
 
-    //public void setCursor(Cursor c) {
-  //      cursor = c;
-   //     notifyDataSetChanged();
-   // }
     public void setTarefas(ArrayList<Tarefa> t){
         tarefas = t;
         notifyDataSetChanged();
@@ -53,22 +45,9 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-//verificar
-        int idxTitulo = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_TITULO);
-        int idxDescricao = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_DESCRICAO);
-        int idxGrau = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_GRAU);
-        int idxEstado = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_ESTADO);
-        int idxData = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_DATAINCIO);
-
-
-        cursor.moveToPosition(i);
-
-        viewHolder.txtTitulo.setText(cursor.getString(idxTitulo));
-        viewHolder.txtDescricao.setText(cursor.getString(idxDescricao));
-        viewHolder.txtGrau.setText(cursor.getString(idxGrau));
-        viewHolder.txtEstado.setText(cursor.getString(idxEstado));
-        viewHolder.txtData.setText(cursor.getString(idxData));
-
+        viewHolder.txtTitulo.setText(tarefas.get(i).getTitulo());
+        viewHolder.txtDescricao.setText(tarefas.get(i).getDescricao());
+        viewHolder.txtGrau.setText(tarefas.get(i).getGrau());
     }
 
     @Override
@@ -80,12 +59,8 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
         this.listener = listener;
     }
 
-    public void setTarefa(ArrayList<Tarefa> tarefa) {
-    }
-
-
     public interface OnTarefaClickListener {
-        public void onTarefaClick(View v, int position);
+        void onTarefaClick(View v, int position);
         void onLongTarefaClick(View v, int position);
     }
 
