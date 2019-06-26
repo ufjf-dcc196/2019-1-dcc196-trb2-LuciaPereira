@@ -19,12 +19,15 @@ public class TarefaDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TarefaContract.Tarefa.CREATE_TAREFA);
         db.execSQL(TarefaContract.Etiqueta.CREATE_ETIQUETA);
+        db.execSQL(TarefaContract.TarefaEtiqueta.CREATE_TAREFA_ETIQUETA);
     }
 
         @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
             db.execSQL(TarefaContract.Tarefa.DROP_TAREFA);
+            db.execSQL(TarefaContract.Etiqueta.DROP_ETIQUETA);
+            db.execSQL(TarefaContract.TarefaEtiqueta.DROP_TAREFA_ETIQUETA);
             onCreate(db);
 
 

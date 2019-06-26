@@ -30,6 +30,7 @@ public class EtiquetaDao {
     public void inicializarDBHelper(Context c){
         dbHelper = new TarefaDbHelper(c);
     }
+
     private void InsertBanco(){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues valores = new ContentValues();

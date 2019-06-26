@@ -1,4 +1,4 @@
-package dcc196.ufjf.br.trb2lucia;
+package dcc196.ufjf.br.trb2lucia.Adapter;
 
 
 import android.content.Context;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import dcc196.ufjf.br.trb2lucia.Banco.TarefaContract;
 import dcc196.ufjf.br.trb2lucia.Modelo.Tarefa;
+import dcc196.ufjf.br.trb2lucia.R;
 
 public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder>{
 
@@ -73,21 +74,22 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return tarefas.size();
-                //cursor.getCount();
     }
 
     public void setOnTarefaClickListener(OnTarefaClickListener listener) {
         this.listener = listener;
     }
 
+    public void setTarefa(ArrayList<Tarefa> tarefa) {
+    }
 
 
     public interface OnTarefaClickListener {
         public void onTarefaClick(View v, int position);
-        void onLongParticipanteClick(View v, int position);
+        void onLongTarefaClick(View v, int position);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener {
         public TextView txtTitulo;
         public TextView txtDescricao;
         public TextView txtGrau;
@@ -110,7 +112,18 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
               }
           });
 
-
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if (listener!=null){
+                        int position = getAdapterPosition();
+                        if(position!= RecyclerView.NO_POSITION){
+                            listener.onTarefaClick(view,position);
+                        }
+                    }
+                    return false;
+                }
+            });
         }
 
         @Override
@@ -120,6 +133,16 @@ public class TarefaAdapter extends RecyclerView.Adapter<TarefaAdapter.ViewHolder
                 listener.onTarefaClick(v,position);
             }
 
+        }
+
+        public boolean onLongClick(View view) {
+            if (listener!=null){
+                int position = getAdapterPosition();
+                if(position!= RecyclerView.NO_POSITION){
+                    listener.onLongTarefaClick(view, position);
+                }
+            }
+            return true;
         }
     }
 

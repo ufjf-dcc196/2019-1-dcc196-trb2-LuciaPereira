@@ -107,6 +107,43 @@ public class TarefaDao {
 
     }
 
+    public Tarefa getTarefaPeloId(int id){
+        Tarefa temp = null;
+        cursor = getTarefaPeloBD(id);
+        int idxTitulo = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_TITULO);
+        int idxDescricao = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_DESCRICAO);
+        int idxGrau = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_GRAU);
+        int idxEstado = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_ESTADO);
+        int idxData = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa.COLLUMN_DATAINCIO);
+        int idxId = cursor.getColumnIndexOrThrow(TarefaContract.Tarefa._ID);
+        if(cursor.moveToFirst()){
+
+                temp = new Tarefa();
+                temp.setTitulo(cursor.getString(idxTitulo));
+                temp.setDescricao(cursor.getString(idxDescricao));
+                temp.setGrau(cursor.getString(idxGrau));
+                temp.setIdTarefa(Integer.parseInt(cursor.getString(idxId)));
+        }
+        return temp;
+    }
+    private Cursor getTarefaPeloBD(int id) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] visao = {
+                TarefaContract.Tarefa.COLLUMN_TITULO,
+                TarefaContract.Tarefa.COLLUMN_DESCRICAO,
+                TarefaContract.Tarefa.COLLUMN_GRAU,
+                TarefaContract.Tarefa.COLLUMN_ESTADO,
+                TarefaContract.Tarefa.COLLUMN_DATAINCIO,
+                TarefaContract.Tarefa._ID
+        };
+        String sort = TarefaContract.Tarefa.COLLUMN_TITULO+ " DESC";
+
+        Cursor c = db.query(TarefaContract.Tarefa.TABLE_NAME, visao,
+                "_ID = ?" ,new String[]{String.valueOf(id)} ,null,null, sort);
+        Log.i("SQLTEST", "getCursorSeriado: "+c.getCount());
+        return c;
+    }
+
 
 
 }

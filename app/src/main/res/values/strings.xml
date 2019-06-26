@@ -15,4 +15,6 @@
     <string name="textview">Lista de Tarefas</string>
     <string name="desEtiqueta">Informe a tag:</string>
     <string name="btcadEti">Cadastrar</string>
+    <string name="listat">Lista</string>
+    <string name="tituloTags">Tags:</string>
 </resources>

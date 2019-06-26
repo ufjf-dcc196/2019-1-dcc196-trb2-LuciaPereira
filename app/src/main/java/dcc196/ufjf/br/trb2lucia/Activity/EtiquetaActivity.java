@@ -17,7 +17,7 @@ import dcc196.ufjf.br.trb2lucia.R;
 public class EtiquetaActivity extends AppCompatActivity {
     private EditText edtDescricao;
     private int id;
-   // Button btnCadastrarTags;
+    Button btnCadastrarTags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +25,23 @@ public class EtiquetaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_etiqueta);
         EtiquetaDao.getInstance().inicializarDBHelper(getApplication());
         edtDescricao = findViewById(R.id.editDescricao);
-        Button btnCadastrarTags = findViewById(R.id.btnCadastrar);
+        btnCadastrarTags = (Button) findViewById(R.id.btCadEtiqueta);
+
+
 
         btnCadastrarTags.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
+                 try {
                     if (validateEntry()) {
                         if(id != -1)
                         {
                             Intent i = new Intent();
                             i.putExtra(MainActivity.DESCRICAO_TAGS,edtDescricao.getText().toString());
 
-                            if ("".equals( edtDescricao.getText().toString()) || edtDescricao.getText() == null) {
+                            if ( edtDescricao.getText().toString().equals("") || edtDescricao.getText() == null) {
 
-                                Toast t = Toast.makeText(getApplicationContext(), "Favor preencher todos o campo", Toast.LENGTH_LONG);
+                                Toast t = Toast.makeText(getApplicationContext(), "Favor preencher o campo", Toast.LENGTH_LONG);
                                 t.setGravity(Gravity.CENTER, 0, 0);
                                 t.show();
                             }
@@ -52,7 +54,7 @@ public class EtiquetaActivity extends AppCompatActivity {
                         finish();
                     }
                         else
-                    Toast.makeText(EtiquetaActivity.this,"Por favor preencha todos os campos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EtiquetaActivity.this,"Por favor preencha o campo", Toast.LENGTH_LONG).show();
 
 
 
