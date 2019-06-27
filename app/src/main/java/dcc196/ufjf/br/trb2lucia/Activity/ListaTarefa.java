@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import dcc196.ufjf.br.trb2lucia.Persistencia.TarefaDao;
 import dcc196.ufjf.br.trb2lucia.Persistencia.TarefaEtiquetaDao;
 import dcc196.ufjf.br.trb2lucia.R;
 import dcc196.ufjf.br.trb2lucia.Adapter.TarefaAdapter;
@@ -14,6 +15,11 @@ public class ListaTarefa extends AppCompatActivity {
     private RecyclerView rvListTarefasEtiquetas;
     private TarefaAdapter adapter;
     private int idTags;
+
+   /* public static void  attRecycle() {
+        adapter.setTarefas(TarefaDao.getInstance().getTarefa());
+        adapter.notifyDataSetChanged();
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +34,12 @@ public class ListaTarefa extends AppCompatActivity {
         adapter =  new TarefaAdapter(TarefaEtiquetaDao.getInstance().getTarefaEtiqueta(idTags));
         rvListTarefasEtiquetas.setLayoutManager(new LinearLayoutManager(this));
         rvListTarefasEtiquetas.setAdapter(adapter);
-
-
-
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.setTarefas(TarefaDao.getInstance().getTarefa());
+    }
+
 }
 

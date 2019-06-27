@@ -2,9 +2,9 @@ package dcc196.ufjf.br.trb2lucia.Modelo;
 
 public class Etiqueta {
     private String tag;
-    private long idEtiqueta;
+    private int idEtiqueta;
 
-    public Etiqueta(String tag, long idEtiqueta) {
+    public Etiqueta(String tag, int idEtiqueta) {
         this.tag = tag;
         this.idEtiqueta = idEtiqueta;
     }
@@ -24,7 +24,7 @@ public class Etiqueta {
         return idEtiqueta;
     }
 
-    public void setIdEtiqueta(long idEtiqueta) {
+    public void setIdEtiqueta(int idEtiqueta) {
         this.idEtiqueta = idEtiqueta;
     }
 }

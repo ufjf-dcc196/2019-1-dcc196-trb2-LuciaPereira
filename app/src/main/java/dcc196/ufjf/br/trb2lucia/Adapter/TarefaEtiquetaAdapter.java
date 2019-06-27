@@ -11,11 +11,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import dcc196.ufjf.br.trb2lucia.Banco.TarefaContract;
+import dcc196.ufjf.br.trb2lucia.Modelo.Etiqueta;
 import dcc196.ufjf.br.trb2lucia.Modelo.Tarefa;
 import dcc196.ufjf.br.trb2lucia.R;
 
 public class TarefaEtiquetaAdapter extends RecyclerView.Adapter<TarefaEtiquetaAdapter.ViewHolder> {
     private ArrayList<Tarefa> tarefas = new ArrayList<>();
+    private ArrayList<Etiqueta> etiquetas = new ArrayList<>();
     private OnTarefaEtiquetaClickListener listener;
 
     @NonNull
@@ -50,10 +52,15 @@ public class TarefaEtiquetaAdapter extends RecyclerView.Adapter<TarefaEtiquetaAd
     public void setOnTarefaEtiquetaClickListener(OnTarefaEtiquetaClickListener listener){
         this.listener = listener;
     }
-
-    public TarefaEtiquetaAdapter(ArrayList<Tarefa> tarefas) {
-        this.tarefas = tarefas;
+    public void setEtiquetas(ArrayList<Etiqueta> e){
+        etiquetas = e;
+        notifyDataSetChanged();
     }
+
+
+    /*public TarefaEtiquetaAdapter(ArrayList<Etiqueta> t) {
+        this.tarefas = t;
+    }*/
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
         public TextView txtTitulo,txtDescricao,txtGrau;

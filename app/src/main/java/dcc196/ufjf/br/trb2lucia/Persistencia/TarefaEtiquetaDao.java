@@ -114,5 +114,32 @@ public class TarefaEtiquetaDao {
         }
         return etiquetas;
     }
+    public ArrayList<Etiqueta> getEtiquetaNaosalva(int idTarefa){
+        cursor = (Cursor) getEtiquetaNaosalva(idTarefa);
+        ArrayList<Etiqueta> etiquetas = new ArrayList<>();
+        int indexDescricao = cursor.getColumnIndexOrThrow(TarefaContract.Etiqueta.COLUMN_NAME_TAG);
+        int indexIdEtiqueta = cursor.getColumnIndexOrThrow(TarefaContract.Etiqueta._ID);
+        if(cursor.moveToFirst()){
+            do{
+                Etiqueta temp = new Etiqueta();
+                temp.setTag(cursor.getString(indexDescricao));
+                temp.setIdEtiqueta(Integer.parseInt(cursor.getString(indexIdEtiqueta)));
+                etiquetas.add(temp);
+            }while (cursor.moveToNext());
+        }
+        return etiquetas;
+    }
+    public boolean verificaInsercao(int idEtiqueta, int idTarefa){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String[] visao = {
+                TarefaContract.TarefaEtiqueta.COLUMN_ID_TAG,
+                TarefaContract.TarefaEtiqueta.COLUMN_ID_TAREFA
+        };
+        String sort = TarefaContract.TarefaEtiqueta._ID+ " DESC";
+        cursor = db.query(TarefaContract.TarefaEtiqueta.TABLE_NAME, visao,
+                "ID_ETIQUETA = ? and ID_TAREFA = ?" ,
+                new String[]{String.valueOf(idEtiqueta),String.valueOf(idTarefa)} ,null,null, sort);
+        return cursor.moveToFirst();
+    }
 
 }

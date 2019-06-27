@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Tarefa {
     private String titulo;
-    private long idTarefa;
+    private int idTarefa;
     private String descricao;
     private String grau;
     private Estado estado;
@@ -15,7 +15,7 @@ public class Tarefa {
 
 
 
-    public Tarefa(String titulo, long idTarefa, String descricao, String grau, Estado estado, String dataLimite, String dataAtual) {
+    public Tarefa(String titulo, int idTarefa, String descricao, String grau, Estado estado, String dataLimite, String dataAtual) {
         this.titulo = titulo;
         this.idTarefa = idTarefa;
         this.descricao = descricao;
@@ -40,7 +40,7 @@ public class Tarefa {
         return idTarefa;
     }
 
-    public void setIdTarefa(long idTarefa) {
+    public void setIdTarefa(int idTarefa) {
         this.idTarefa = idTarefa;
     }
 

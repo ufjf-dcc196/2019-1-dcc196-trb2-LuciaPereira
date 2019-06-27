@@ -11,6 +11,7 @@ import dcc196.ufjf.br.trb2lucia.R;
 public class ListaTags extends AppCompatActivity {
     private RecyclerView listaTags;
     private static EtiquetaAdapter lista;
+    public static final String ID_TAG = "Tag";
 
 
     @Override
